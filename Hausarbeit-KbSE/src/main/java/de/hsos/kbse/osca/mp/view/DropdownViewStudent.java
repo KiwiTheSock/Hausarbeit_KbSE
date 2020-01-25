@@ -36,8 +36,8 @@ public class DropdownViewStudent implements Serializable {
 
     @PostConstruct
     public void init() {
-        setModuls(new HashMap<>());
-        setTimes(new HashMap<>());
+       // setModuls(new HashMap<>());
+        //setTimes(new HashMap<>());
 
         getModuls().put("Mathe1", "Mathe 1");
         getModuls().put("KBSE", "KBSE");

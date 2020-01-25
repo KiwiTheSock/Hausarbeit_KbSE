@@ -85,7 +85,7 @@ public class DropdownViewDozent implements Serializable {
             getConvertListExamMaxs().add(map.getValue());
         }
 
-        getConvertListTerms().sort(Comparator.naturalOrder());
+       // getConvertListTerms().sort(Comparator.naturalOrder());
 
         for (Map.Entry<String, Integer> map : getDurations().entrySet()) {
             getConvertListDurations().add(map.getValue().toString());

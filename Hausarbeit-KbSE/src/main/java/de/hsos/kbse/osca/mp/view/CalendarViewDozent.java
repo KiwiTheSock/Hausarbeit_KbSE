@@ -48,7 +48,7 @@ public class CalendarViewDozent implements Serializable {
 
     @PostConstruct
     public void init() {
-        setInvalidDates(new ArrayList<>());
+       // setInvalidDates(new ArrayList<>());
         Date today = new Date();
         getInvalidDates().add(today);
         long oneDay = 24 * 60 * 60 * 1000;
@@ -56,7 +56,7 @@ public class CalendarViewDozent implements Serializable {
             getInvalidDates().add(new Date(getInvalidDates().get(i).getTime() + oneDay));
         }
 
-        setInvalidDays(new ArrayList<>());
+       // setInvalidDays(new ArrayList<>());
         getInvalidDays().add(0);
         /* the first day of week is disabled */
         getInvalidDays().add(3);

@@ -5,9 +5,7 @@
  */
 package de.hsos.kbse.osca.mp.abstracts;
 
-import static com.oracle.webservices.internal.api.databinding.DatabindingModeFeature.ID;
 import java.io.Serializable;
-import javax.persistence.Access;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.GenerationType;
