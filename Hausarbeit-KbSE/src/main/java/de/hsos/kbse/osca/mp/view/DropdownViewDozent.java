@@ -16,8 +16,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import logger.interceptorbinding.LevelEnum;
-import logger.interceptorbinding.Logable;
+import de.hsos.kbse.osca.mp.logger.interceptorbinding.LevelEnum;
+import de.hsos.kbse.osca.mp.logger.interceptorbinding.Logable;
 
 /**
  *
