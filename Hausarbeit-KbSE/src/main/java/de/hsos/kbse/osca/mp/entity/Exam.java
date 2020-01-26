@@ -8,18 +8,26 @@ package de.hsos.kbse.osca.mp.entity;
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Philipp
  */
+
+
 @Entity
+@Vetoed
+@Table(name = "Exam")
+@XmlRootElement
 public class Exam extends AbstractEntity {
     
     @NotNull(message = "duration can't be empty")
@@ -33,22 +41,22 @@ public class Exam extends AbstractEntity {
     @NotNull(message = "Day can't be empty")
     private Date day;
     
-    @ManyToOne
-    private List<Module> modules;
+// wird die Hashset benötigt??
+//    @ManyToOne
+//    private HashSet<Module> modules;
     
     @OneToMany
-    private List<TimeSlot> timeslots;
+    private HashSet<TimeSlot> timeslots;
 
     public Exam() {
     }
 
-    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day, List<Module> modules, List<TimeSlot> timeslots) {
+    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day, HashSet<TimeSlot> timeslots) {
         this.duration = duration;
         this.start = start;
         this.end = end;
         this.spaceforStudents = spaceforStudents;
         this.day = day;
-        this.modules = modules;
         this.timeslots = timeslots;
     }
 
@@ -92,32 +100,23 @@ public class Exam extends AbstractEntity {
         this.day = day;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
-
-    public List<TimeSlot> getTimeslots() {
+    public HashSet<TimeSlot> getTimeslots() {
         return timeslots;
     }
 
-    public void setTimeslots(List<TimeSlot> timeslots) {
+    public void setTimeslots(HashSet<TimeSlot> timeslots) {
         this.timeslots = timeslots;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Float.floatToIntBits(this.duration);
-        hash = 43 * hash + Objects.hashCode(this.start);
-        hash = 43 * hash + Objects.hashCode(this.end);
-        hash = 43 * hash + this.spaceforStudents;
-        hash = 43 * hash + Objects.hashCode(this.day);
-        hash = 43 * hash + Objects.hashCode(this.modules);
-        hash = 43 * hash + Objects.hashCode(this.timeslots);
+        hash = 23 * hash + Float.floatToIntBits(this.duration);
+        hash = 23 * hash + Objects.hashCode(this.start);
+        hash = 23 * hash + Objects.hashCode(this.end);
+        hash = 23 * hash + this.spaceforStudents;
+        hash = 23 * hash + Objects.hashCode(this.day);
+        hash = 23 * hash + Objects.hashCode(this.timeslots);
         return hash;
     }
 
@@ -148,9 +147,6 @@ public class Exam extends AbstractEntity {
         if (!Objects.equals(this.day, other.day)) {
             return false;
         }
-        if (!Objects.equals(this.modules, other.modules)) {
-            return false;
-        }
         if (!Objects.equals(this.timeslots, other.timeslots)) {
             return false;
         }
@@ -159,6 +155,8 @@ public class Exam extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Exam{" + "duration=" + duration + ", start=" + start + ", end=" + end + ", spaceforStudents=" + spaceforStudents + ", day=" + day + ", modules=" + modules + ", timeslots=" + timeslots + '}';
+        return "Exam{" + "duration=" + duration + ", start=" + start + ", end=" + end + ", spaceforStudents=" + spaceforStudents + ", day=" + day + ", timeslots=" + timeslots + '}';
     }
+
+
 }

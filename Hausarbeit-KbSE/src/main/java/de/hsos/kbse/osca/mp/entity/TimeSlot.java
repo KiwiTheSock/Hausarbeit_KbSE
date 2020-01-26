@@ -7,31 +7,37 @@ package de.hsos.kbse.osca.mp.entity;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.sql.Time;
-import java.util.List;
 import java.util.Objects;
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Philipp
  */
 @Entity
+@Vetoed
+@Table(name = "TimeSlot")
+@XmlRootElement
 public class TimeSlot extends AbstractEntity {
 
     private float slot;
 
-    @ManyToOne
-    private List<Exam> exam;
+//    @ManyToOne
+//    private <Exam> exam;
 
     public TimeSlot() {
     }
 
-    public TimeSlot(float slot, List<Exam> exam) {
+    public TimeSlot(float slot) {
         this.slot = slot;
-        this.exam = exam;
     }
+
+    
 
     public float getSlot() {
         return slot;
@@ -41,19 +47,10 @@ public class TimeSlot extends AbstractEntity {
         this.slot = slot;
     }
 
-    public List<Exam> getExam() {
-        return exam;
-    }
-
-    public void setExam(List<Exam> exam) {
-        this.exam = exam;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Float.floatToIntBits(this.slot);
-        hash = 43 * hash + Objects.hashCode(this.exam);
+        int hash = 3;
+        hash = 97 * hash + Float.floatToIntBits(this.slot);
         return hash;
     }
 
@@ -72,14 +69,15 @@ public class TimeSlot extends AbstractEntity {
         if (Float.floatToIntBits(this.slot) != Float.floatToIntBits(other.slot)) {
             return false;
         }
-        if (!Objects.equals(this.exam, other.exam)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "TimeSlot{" + "slot=" + slot + ", exam=" + exam + '}';
+        return "TimeSlot{" + "slot=" + slot + '}';
     }
+
+
+    
+    
 }

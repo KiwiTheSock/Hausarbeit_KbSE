@@ -5,19 +5,16 @@
  */
 package de.hsos.kbse.osca.mp.entity;
 
+
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Objects;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +22,11 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-public class User extends AbstractEntity{
+@Vetoed
+@Table(name = "Customer")
+@XmlRootElement
+public class Customer extends AbstractEntity{
+
     
     @NotNull(message = "Firstname may not be empty")
     private String firstname;
@@ -56,19 +57,18 @@ public class User extends AbstractEntity{
     
     //Relation zu Modul (OOAD, Mathe 2,...)
     @ManyToMany
-    private List<Module> modules;
+    private HashSet<Fach> modules;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String firstname, String lastname, String _email, String studentLogin, String studentPassword, int accountType, List<Module> modules) {
+    public Customer(String firstname, String lastname, String email, String studentLogin, String studentPassword, int accountType) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.studentLogin = studentLogin;
         this.studentPassword = studentPassword;
         this.accountType = accountType;
-        this.modules = modules;
     }
 
     public String getFirstname() {
@@ -119,24 +119,20 @@ public class User extends AbstractEntity{
         this.accountType = accountType;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
+    @Override
+    public String toString() {
+        return "Customer{" + "firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", studentLogin=" + studentLogin + ", studentPassword=" + studentPassword + ", accountType=" + accountType + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.firstname);
-        hash = 37 * hash + Objects.hashCode(this.lastname);
-        hash = 37 * hash + Objects.hashCode(this.email);
-        hash = 37 * hash + Objects.hashCode(this.studentLogin);
-        hash = 37 * hash + Objects.hashCode(this.studentPassword);
-        hash = 37 * hash + this.accountType;
-        hash = 37 * hash + Objects.hashCode(this.modules);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.firstname);
+        hash = 83 * hash + Objects.hashCode(this.lastname);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        hash = 83 * hash + Objects.hashCode(this.studentLogin);
+        hash = 83 * hash + Objects.hashCode(this.studentPassword);
+        hash = 83 * hash + this.accountType;
         return hash;
     }
 
@@ -151,7 +147,7 @@ public class User extends AbstractEntity{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Customer other = (Customer) obj;
         if (this.accountType != other.accountType) {
             return false;
         }
@@ -170,15 +166,9 @@ public class User extends AbstractEntity{
         if (!Objects.equals(this.studentPassword, other.studentPassword)) {
             return false;
         }
-        if (!Objects.equals(this.modules, other.modules)) {
-            return false;
-        }
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", studentLogin=" + studentLogin + ", studentPassword=" + studentPassword + ", accountType=" + accountType + ", modules=" + modules + '}';
-    }
+  
 
 }
