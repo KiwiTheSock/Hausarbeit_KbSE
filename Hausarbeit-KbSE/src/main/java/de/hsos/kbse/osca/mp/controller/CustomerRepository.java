@@ -6,17 +6,18 @@
 package de.hsos.kbse.osca.mp.controller;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
-import de.hsos.kbse.osca.mp.entity.TimeSlot;
+import de.hsos.kbse.osca.mp.entity.Customer;
+import javax.ejb.Stateless;
 
 /**
  *
+ * CustomerController (Repository)
+ *
  * @author Philipp
  */
-public class TimeSlotRepository {//extends AbstractRepository<TimeSlot>{
- 
-    
-    public TimeSlotRepository() {
-        
+@Stateless
+public class CustomerRepository extends AbstractRepository<Customer> {
+
+    public CustomerRepository() {
     }
-    
 }

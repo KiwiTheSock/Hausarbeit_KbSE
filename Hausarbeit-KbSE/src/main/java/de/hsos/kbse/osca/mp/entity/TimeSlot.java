@@ -29,15 +29,12 @@ public class TimeSlot extends AbstractEntity {
 
 //    @ManyToOne
 //    private <Exam> exam;
-
     public TimeSlot() {
     }
 
     public TimeSlot(float slot) {
         this.slot = slot;
     }
-
-    
 
     public float getSlot() {
         return slot;
@@ -77,7 +74,4 @@ public class TimeSlot extends AbstractEntity {
         return "TimeSlot{" + "slot=" + slot + '}';
     }
 
-
-    
-    
 }

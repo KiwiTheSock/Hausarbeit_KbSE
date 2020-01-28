@@ -21,10 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Philipp
  */
 @Entity
-@Vetoed
-@Table(name = "Fach")
-@XmlRootElement
-public class Fach extends AbstractEntity {
+@Table(name = "Module")
+public class Module extends AbstractEntity {
     
     //ID wird in AbstractEntity erstellt
     @NotNull(message = "Modulename can't be empty")
@@ -38,10 +36,15 @@ public class Fach extends AbstractEntity {
     @OneToMany
     private HashSet<Exam> exam;
     
-    public Fach() {
+    public Module() {
     }
 
-    public Fach(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
+    public Module(String moduleName, int semester) {
+        this.moduleName = moduleName;
+        this.semester = semester;
+    }
+
+    public Module(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
         this.moduleName = moduleName;
         this.semester = semester;
         this.users = users;
@@ -101,7 +104,7 @@ public class Fach extends AbstractEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fach other = (Fach) obj;
+        final Module other = (Module) obj;
         if (this.semester != other.semester) {
             return false;
         }

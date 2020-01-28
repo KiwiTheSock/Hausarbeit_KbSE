@@ -22,10 +22,11 @@ import javax.persistence.MappedSuperclass;
 @Access(AccessType.FIELD)
 public abstract class AbstractEntity implements Serializable {
     
-//    private static final long serialVersionUID = 1L;
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    
+    private static final long serialVersionUID = 1L;
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     public long getId() {

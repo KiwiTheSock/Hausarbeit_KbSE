@@ -9,12 +9,10 @@ package de.hsos.kbse.osca.mp.entity;
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.util.HashSet;
 import java.util.Objects;
-import javax.enterprise.inject.Vetoed;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,9 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @Entity
-@Vetoed
 @Table(name = "Customer")
-@XmlRootElement
 public class Customer extends AbstractEntity{
 
     
@@ -36,6 +32,8 @@ public class Customer extends AbstractEntity{
     @NotNull(message = "Email may not be empty")
     private String email;
     
+    /*    @NotNull(message ="Matr. Nr. can't be empty!")
+    private String matnr;*/
     /**
      * Wird eine PLZ, Straße und Stadt benötigt? 
      * 
@@ -57,7 +55,7 @@ public class Customer extends AbstractEntity{
     
     //Relation zu Modul (OOAD, Mathe 2,...)
     @ManyToMany
-    private HashSet<Fach> modules;
+    private HashSet<Module> modules;
 
     public Customer() {
     }

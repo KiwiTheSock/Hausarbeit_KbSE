@@ -5,12 +5,16 @@
  */
 package de.hsos.kbse.osca.mp.controller;
 
+import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
+import de.hsos.kbse.osca.mp.entity.Exam;
+
 /**
  *
  * @author Philipp
  */
-public class ExamRepository {
- 
-    
-    //Empty
+public class ExamRepository {//extends AbstractRepository<Exam>{
+
+    public ExamRepository() {
+    }
+        
 }
