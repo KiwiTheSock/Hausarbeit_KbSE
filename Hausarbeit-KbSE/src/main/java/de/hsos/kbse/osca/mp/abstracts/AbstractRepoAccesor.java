@@ -18,5 +18,9 @@ public abstract class AbstractRepoAccesor {
     @Inject
     protected CustomerRepository Customers;
     @Inject
-    protected DepartmentRepository Modules;
+    protected DepartmentRepository Departments;
+    @Inject
+    protected DepartmentRepository Exams;
+    @Inject
+    protected DepartmentRepository TimeSlots;
 }

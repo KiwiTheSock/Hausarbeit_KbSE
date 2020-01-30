@@ -7,6 +7,7 @@ package de.hsos.kbse.osca.mp.view;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractRepoAccesor;
 import de.hsos.kbse.osca.mp.entity.Department;
+import de.hsos.kbse.osca.mp.entity.Exam;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,6 +30,8 @@ import de.hsos.kbse.osca.mp.logger.interceptorbinding.Logable;
 @ViewScoped
 public class DropdownViewDozent extends AbstractRepoAccesor implements Serializable {
 
+    private Department dep;
+    private Exam ex;
     private Map<String, String> terms = new HashMap<>();
     private Map<String, Integer> durations = new HashMap<>();
     private Map<String, Integer> studentCounts = new HashMap<>();
@@ -298,7 +301,7 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
     @Logable(logLevel = LevelEnum.INFO)
     public void setButtonCheck(boolean buttonCheck) {
         System.out.println("CHECK");
-        this.Modules.add(new Department(this.modulName, this.term));
+       this.dep = this.Departments.add(new Department(this.modulName, this.term));
         this.buttonCheck = buttonCheck;
         
     }
@@ -411,10 +414,12 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
     }
 
     /**
+     * Tag + Zeiten
      * @param buttonCheck2 the buttonCheck2 to set
      */
     public void setButtonCheck2(boolean buttonCheck2) {
         this.buttonCheck2 = buttonCheck2;
+        //this.ex = this.Exams.add(new Exam(duration, convertListExamMins, convertListExamMaxs, studentCount, day));
     }
 
 }
