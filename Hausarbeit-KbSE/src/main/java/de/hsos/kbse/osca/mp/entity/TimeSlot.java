@@ -6,20 +6,16 @@
 package de.hsos.kbse.osca.mp.entity;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
-import java.sql.Time;
-import java.util.Objects;
-import javax.enterprise.inject.Vetoed;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Philipp
  */
+@Dependent
 @Entity
-@Vetoed
 @Table(name = "TimeSlot")
 public class TimeSlot extends AbstractEntity {
 

@@ -8,7 +8,7 @@ package de.hsos.kbse.osca.mp.entity;
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.util.HashSet;
 import java.util.Objects;
-import javax.enterprise.inject.Vetoed;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author Philipp
  */
 @Entity
+@Dependent
 @Table(name = "Department")
 public class Department extends AbstractEntity {
     

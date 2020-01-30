@@ -6,7 +6,7 @@
 package de.hsos.kbse.osca.mp.entity;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
-import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +24,7 @@ import javax.validation.constraints.Size;
  * @author nordm
  */
 @Entity
+@Dependent
 @Table(name = "CUSTOMER", catalog = "", schema = "X")
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),

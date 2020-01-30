@@ -10,9 +10,8 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
-import javax.enterprise.inject.Vetoed;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,7 +22,7 @@ import javax.validation.constraints.NotNull;
  * @author Philipp
  */
 
-
+@Dependent
 @Entity
 @Table(name = "Exam")
 public class Exam extends AbstractEntity {
