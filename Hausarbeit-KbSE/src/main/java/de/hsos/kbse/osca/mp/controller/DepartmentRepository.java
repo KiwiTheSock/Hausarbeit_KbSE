@@ -14,8 +14,8 @@ import javax.ejb.Stateless;
  * @author Philipp
  */
 @Stateless
-public class ModuleRepository extends AbstractRepository<Department>{
+public class DepartmentRepository extends AbstractRepository<Department>{
 
-    public ModuleRepository() {
+    public DepartmentRepository() {
     }
 }

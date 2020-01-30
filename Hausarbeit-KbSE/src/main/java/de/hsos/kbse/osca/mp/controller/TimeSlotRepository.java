@@ -12,7 +12,7 @@ import de.hsos.kbse.osca.mp.entity.TimeSlot;
  *
  * @author Philipp
  */
-public class TimeSlotRepository {//extends AbstractRepository<TimeSlot>{
+public class TimeSlotRepository extends AbstractRepository<TimeSlot>{
  
     
     public TimeSlotRepository() {

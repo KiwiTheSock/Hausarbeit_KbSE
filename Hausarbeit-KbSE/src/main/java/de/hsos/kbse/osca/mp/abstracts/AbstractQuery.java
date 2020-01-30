@@ -31,6 +31,12 @@ public class AbstractQuery<T extends AbstractEntity> {
         this.query = em.createQuery(this.sql, entityClass);
     }
 
+    public AbstractQuery<T> put(String name, Object value) {
+        this.sql = sql.replace(":" + name, "\"" + value.toString() + "\"");
+        this.query.setParameter(name, value);
+        return this;
+    }
+
     //Queryanfrage für alle vohanden Objekte 
     public Collection<T> all() {
         try {
@@ -39,6 +45,16 @@ public class AbstractQuery<T extends AbstractEntity> {
         } catch (Exception ex) {
             System.out.println("SQL: " + ex);
             return new ArrayList<>();
+        }
+    }
+
+    public T one() {
+        try {
+            System.out.println("SQL: " + sql);
+            return query.getSingleResult();
+        } catch (Exception ex) {
+            System.out.println("SQL: " + ex);
+            return null;
         }
     }
 
