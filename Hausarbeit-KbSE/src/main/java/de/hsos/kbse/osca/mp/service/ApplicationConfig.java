@@ -29,7 +29,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(de.hsos.kbse.osca.mp.service.CustomerFacadeREST.class);
         resources.add(de.hsos.kbse.osca.mp.service.ExamFacadeREST.class);
+        resources.add(de.hsos.kbse.osca.mp.service.FachFacadeREST.class);
         resources.add(de.hsos.kbse.osca.mp.service.TimeSlotFacadeREST.class);
     }
     
