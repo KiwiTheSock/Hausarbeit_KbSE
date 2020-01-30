@@ -29,7 +29,7 @@ public class Department extends AbstractEntity {
     @NotNull(message = "Modulename can't be empty")
     private String moduleName;
     @NotNull(message = "Semester can't be empty")
-    private int semester;
+    private String semester;
     
     @ManyToMany
     private HashSet<Customer> users;
@@ -40,12 +40,12 @@ public class Department extends AbstractEntity {
     public Department() {
     }
 
-    public Department(String moduleName, int semester) {
+    public Department(String moduleName, String semester) {
         this.moduleName = moduleName;
         this.semester = semester;
     }
 
-    public Department(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
+    public Department(String moduleName, String semester, HashSet<Customer> users, HashSet<Exam> exam) {
         this.moduleName = moduleName;
         this.semester = semester;
         this.users = users;
@@ -60,11 +60,11 @@ public class Department extends AbstractEntity {
         this.moduleName = moduleName;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
@@ -88,7 +88,7 @@ public class Department extends AbstractEntity {
     public int hashCode() {
         int hash = 7;
         hash = 47 * hash + Objects.hashCode(this.moduleName);
-        hash = 47 * hash + this.semester;
+        hash = 47 * hash + Objects.hashCode(this.semester);
         hash = 47 * hash + Objects.hashCode(this.users);
         hash = 47 * hash + Objects.hashCode(this.exam);
         return hash;
