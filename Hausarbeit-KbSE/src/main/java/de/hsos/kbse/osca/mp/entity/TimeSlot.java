@@ -21,6 +21,8 @@ public class TimeSlot extends AbstractEntity {
 
     private float slot;
 
+//    @ManyToOne
+//    private <Exam> exam;
     public TimeSlot() {
     }
 

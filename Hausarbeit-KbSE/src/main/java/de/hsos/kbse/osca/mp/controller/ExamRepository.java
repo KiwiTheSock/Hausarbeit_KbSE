@@ -12,7 +12,7 @@ import de.hsos.kbse.osca.mp.entity.Exam;
  *
  * @author Philipp
  */
-public class ExamRepository extends AbstractRepository<Exam>{
+public class ExamRepository {//extends AbstractRepository<Exam>{
 
     public ExamRepository() {
     }

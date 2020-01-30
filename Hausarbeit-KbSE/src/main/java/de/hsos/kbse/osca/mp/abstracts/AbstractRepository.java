@@ -24,7 +24,7 @@ public abstract class AbstractRepository<T extends AbstractEntity> implements Se
     @PersistenceContext(unitName = "de.hsos.kbse.oscar.mp_Hausarbeit-KbSE_war_1.0-SNAPSHOTPU")
     protected EntityManager em;
 
-    protected Class<T> entityClass;
+    protected Class<?> entityClass;
     protected String table;
 
     @PostConstruct

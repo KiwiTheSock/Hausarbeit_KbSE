@@ -20,11 +20,4 @@ public class CustomerRepository extends AbstractRepository<Customer> {
 
     public CustomerRepository() {
     }
-    
-    public Customer getByLogin(String login) {
-        
-        System.out.print("SQL: get " + login);
-        return query("select e from #table e where e.studentLogin = :login").put("login", login).one();
-        
-    }
 }

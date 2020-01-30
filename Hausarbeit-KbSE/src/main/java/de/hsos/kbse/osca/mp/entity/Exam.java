@@ -10,11 +10,10 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
 
@@ -37,25 +36,26 @@ public class Exam extends AbstractEntity {
     @NotNull(message = "Amount can't be empty")
     private int spaceforStudents;
     @NotNull(message = "Day can't be empty")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date examDate;
+    private Date day;
     
-      //Wird die Hashset benötigt??
+// wird die Hashset benötigt??
 //    @ManyToOne
 //    private HashSet<Module> modules;
-
+    
+    //Alternativ zum Set java.util.Collection, java.util.Set, java.util.List, or java.util.Map
     @OneToMany
-    private Set<TimeSlot> timeslots = new HashSet<>();
+    private HashSet<TimeSlot> timeslots;
     
     public Exam() {
     }
 
-    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day) {
+    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day, HashSet<TimeSlot> timeslots) {
         this.duration = duration;
         this.startT = start;
         this.endT = end;
         this.spaceforStudents = spaceforStudents;
-        this.examDate = day;
+        this.day = day;
+        this.timeslots = timeslots;
     }
 
     public float getDuration() {
@@ -91,14 +91,14 @@ public class Exam extends AbstractEntity {
     }
 
     public Date getDay() {
-        return examDate;
+        return day;
     }
 
     public void setDay(Date day) {
-        this.examDate = day;
+        this.day = day;
     }
 
-    public Set<TimeSlot> getTimeslots() {
+    public HashSet<TimeSlot> getTimeslots() {
         return timeslots;
     }
 
@@ -113,7 +113,8 @@ public class Exam extends AbstractEntity {
         hash = 23 * hash + Objects.hashCode(this.startT);
         hash = 23 * hash + Objects.hashCode(this.endT);
         hash = 23 * hash + this.spaceforStudents;
-        hash = 23 * hash + Objects.hashCode(this.examDate);
+        hash = 23 * hash + Objects.hashCode(this.day);
+        hash = 23 * hash + Objects.hashCode(this.timeslots);
         return hash;
     }
 
@@ -141,7 +142,10 @@ public class Exam extends AbstractEntity {
         if (!Objects.equals(this.endT, other.endT)) {
             return false;
         }
-        if (!Objects.equals(this.examDate, other.examDate)) {
+        if (!Objects.equals(this.day, other.day)) {
+            return false;
+        }
+        if (!Objects.equals(this.timeslots, other.timeslots)) {
             return false;
         }
         return true;
@@ -149,7 +153,7 @@ public class Exam extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Exam{" + "duration=" + duration + ", start=" + startT + ", end=" + endT + ", spaceforStudents=" + spaceforStudents + ", day=" + examDate + ", timeslots=" + timeslots + '}';
+        return "Exam{" + "duration=" + duration + ", start=" + startT + ", end=" + endT + ", spaceforStudents=" + spaceforStudents + ", day=" + day + ", timeslots=" + timeslots + '}';
     }
 
 

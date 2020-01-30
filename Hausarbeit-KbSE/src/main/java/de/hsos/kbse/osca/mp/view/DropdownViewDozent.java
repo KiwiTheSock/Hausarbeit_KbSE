@@ -5,9 +5,6 @@
  */
 package de.hsos.kbse.osca.mp.view;
 
-import de.hsos.kbse.osca.mp.abstracts.AbstractRepoAccesor;
-import de.hsos.kbse.osca.mp.entity.Department;
-import de.hsos.kbse.osca.mp.entity.Exam;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -28,10 +25,8 @@ import de.hsos.kbse.osca.mp.logger.interceptorbinding.Logable;
  */
 @Named
 @ViewScoped
-public class DropdownViewDozent extends AbstractRepoAccesor implements Serializable {
+public class DropdownViewDozent implements Serializable {
 
-    private Department dep;
-    private Exam ex;
     private Map<String, String> terms = new HashMap<>();
     private Map<String, Integer> durations = new HashMap<>();
     private Map<String, Integer> studentCounts = new HashMap<>();
@@ -55,7 +50,7 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
 
     @PostConstruct
     public void init() {
-        getTerms().put("Semester1", "WiSe 17/18"); //Anstatt WiSe/SoSe nur Zahlen?
+        getTerms().put("Semester1", "WiSe 17/18");
         getTerms().put("Semester2", "SoSe 18");
         getTerms().put("Semester3", "WiSe 18/19");
         getTerms().put("Semester4", "SoSe 19");
@@ -90,7 +85,7 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
             getConvertListExamMaxs().add(map.getValue());
         }
 
-        getConvertListTerms().sort(Comparator.naturalOrder());
+       // getConvertListTerms().sort(Comparator.naturalOrder());
 
         for (Map.Entry<String, Integer> map : getDurations().entrySet()) {
             getConvertListDurations().add(map.getValue().toString());
@@ -301,9 +296,7 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
     @Logable(logLevel = LevelEnum.INFO)
     public void setButtonCheck(boolean buttonCheck) {
         System.out.println("CHECK");
-       this.dep = this.Departments.add(new Department(this.modulName, this.term));
         this.buttonCheck = buttonCheck;
-        
     }
 
     /**
@@ -414,12 +407,10 @@ public class DropdownViewDozent extends AbstractRepoAccesor implements Serializa
     }
 
     /**
-     * Tag + Zeiten
      * @param buttonCheck2 the buttonCheck2 to set
      */
     public void setButtonCheck2(boolean buttonCheck2) {
         this.buttonCheck2 = buttonCheck2;
-        //this.ex = this.Exams.add(new Exam(duration, convertListExamMins, convertListExamMaxs, studentCount, day));
     }
 
 }
