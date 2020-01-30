@@ -6,21 +6,24 @@
 package de.hsos.kbse.osca.mp.entity;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+//import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Philipp
  */
 @Entity
-public class Module extends AbstractEntity {
+@Dependent
+@Table(name = "Department")
+public class Department extends AbstractEntity {
     
     //ID wird in AbstractEntity erstellt
     @NotNull(message = "Modulename can't be empty")
@@ -29,18 +32,24 @@ public class Module extends AbstractEntity {
     private int semester;
     
     @ManyToMany
-    private List<User> users;
+    private HashSet<Customer> users;
 
     @OneToMany
-    private List<Exam> exam;
+    private HashSet<Exam> exam;
     
-    public Module() {
+    public Department() {
     }
 
-    public Module(String moduleName, int semester, List<User> users) {
+    public Department(String moduleName, int semester) {
+        this.moduleName = moduleName;
+        this.semester = semester;
+    }
+
+    public Department(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
         this.moduleName = moduleName;
         this.semester = semester;
         this.users = users;
+        this.exam = exam;
     }
 
     public String getModuleName() {
@@ -59,20 +68,29 @@ public class Module extends AbstractEntity {
         this.semester = semester;
     }
 
-    public List<User> getUsers() {
+    public HashSet<Customer> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(HashSet<Customer> users) {
         this.users = users;
+    }
+
+    public HashSet<Exam> getExam() {
+        return exam;
+    }
+
+    public void setExam(HashSet<Exam> exam) {
+        this.exam = exam;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.moduleName);
-        hash = 97 * hash + this.semester;
-        hash = 97 * hash + Objects.hashCode(this.users);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.moduleName);
+        hash = 47 * hash + this.semester;
+        hash = 47 * hash + Objects.hashCode(this.users);
+        hash = 47 * hash + Objects.hashCode(this.exam);
         return hash;
     }
 
@@ -87,7 +105,7 @@ public class Module extends AbstractEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Module other = (Module) obj;
+        final Department other = (Department) obj;
         if (this.semester != other.semester) {
             return false;
         }
@@ -97,12 +115,17 @@ public class Module extends AbstractEntity {
         if (!Objects.equals(this.users, other.users)) {
             return false;
         }
+        if (!Objects.equals(this.exam, other.exam)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Module{" + "moduleName=" + moduleName + ", semester=" + semester + ", users=" + users + '}';
+        return "Fach{" + "moduleName=" + moduleName + ", semester=" + semester + ", users=" + users + ", exam=" + exam + '}';
     }
+
+
     
 }

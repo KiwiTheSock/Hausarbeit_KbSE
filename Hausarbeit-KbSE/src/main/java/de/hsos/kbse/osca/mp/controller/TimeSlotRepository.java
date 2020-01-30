@@ -5,10 +5,18 @@
  */
 package de.hsos.kbse.osca.mp.controller;
 
+import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
+import de.hsos.kbse.osca.mp.entity.TimeSlot;
+
 /**
  *
  * @author Philipp
  */
-public class TimeSlotRepository {
+public class TimeSlotRepository {//extends AbstractRepository<TimeSlot>{
+ 
+    
+    public TimeSlotRepository() {
+        
+    }
     
 }

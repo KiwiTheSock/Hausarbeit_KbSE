@@ -5,15 +5,19 @@
  */
 package de.hsos.kbse.osca.mp.controller;
 
-import java.io.Serializable;
-import javax.persistence.EntityManager;
+import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
+import de.hsos.kbse.osca.mp.entity.Customer;
+
 
 /**
  *
+ * CustomerController (Repository)
+ *
  * @author Philipp
  */
-public class UserRepository implements Serializable{
-    
-    //@PersistenceContext
-    private EntityManager em;
+
+public class CustomerRepository extends AbstractRepository<Customer> {
+
+    public CustomerRepository() {
+    }
 }

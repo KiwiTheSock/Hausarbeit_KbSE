@@ -5,10 +5,17 @@
  */
 package de.hsos.kbse.osca.mp.controller;
 
+import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
+import de.hsos.kbse.osca.mp.entity.Department;
+import javax.ejb.Stateless;
+
 /**
  *
  * @author Philipp
  */
-public class ModuleRepository {
-    
+@Stateless
+public class ModuleRepository extends AbstractRepository<Department>{
+
+    public ModuleRepository() {
+    }
 }

@@ -8,47 +8,53 @@ package de.hsos.kbse.osca.mp.entity;
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 
 /**
  *
  * @author Philipp
  */
+
+@Dependent
 @Entity
+@Table(name = "Exam")
 public class Exam extends AbstractEntity {
     
     @NotNull(message = "duration can't be empty")
     private float duration;
     @NotNull(message = "Starttime can't be empty")
-    private Time start;
+    private Time startT;
     @NotNull(message = "Endtime can't be empty")
-    private Time end;
+    private Time endT;
     @NotNull(message = "Amount can't be empty")
     private int spaceforStudents;
     @NotNull(message = "Day can't be empty")
     private Date day;
     
-    @ManyToOne
-    private List<Module> modules;
+// wird die Hashset benötigt??
+//    @ManyToOne
+//    private HashSet<Module> modules;
     
+    //Alternativ zum Set java.util.Collection, java.util.Set, java.util.List, or java.util.Map
     @OneToMany
-    private List<TimeSlot> timeslots;
-
+    private HashSet<TimeSlot> timeslots;
+    
     public Exam() {
     }
 
-    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day, List<Module> modules, List<TimeSlot> timeslots) {
+    public Exam(float duration, Time start, Time end, int spaceforStudents, Date day, HashSet<TimeSlot> timeslots) {
         this.duration = duration;
-        this.start = start;
-        this.end = end;
+        this.startT = start;
+        this.endT = end;
         this.spaceforStudents = spaceforStudents;
         this.day = day;
-        this.modules = modules;
         this.timeslots = timeslots;
     }
 
@@ -61,19 +67,19 @@ public class Exam extends AbstractEntity {
     }
 
     public Time getStart() {
-        return start;
+        return startT;
     }
 
     public void setStart(Time start) {
-        this.start = start;
+        this.startT = start;
     }
 
     public Time getEnd() {
-        return end;
+        return endT;
     }
 
     public void setEnd(Time end) {
-        this.end = end;
+        this.endT = end;
     }
 
     public int getSpaceforStudents() {
@@ -92,32 +98,23 @@ public class Exam extends AbstractEntity {
         this.day = day;
     }
 
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
-
-    public List<TimeSlot> getTimeslots() {
+    public HashSet<TimeSlot> getTimeslots() {
         return timeslots;
     }
 
-    public void setTimeslots(List<TimeSlot> timeslots) {
+    public void setTimeslots(HashSet<TimeSlot> timeslots) {
         this.timeslots = timeslots;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Float.floatToIntBits(this.duration);
-        hash = 43 * hash + Objects.hashCode(this.start);
-        hash = 43 * hash + Objects.hashCode(this.end);
-        hash = 43 * hash + this.spaceforStudents;
-        hash = 43 * hash + Objects.hashCode(this.day);
-        hash = 43 * hash + Objects.hashCode(this.modules);
-        hash = 43 * hash + Objects.hashCode(this.timeslots);
+        hash = 23 * hash + Float.floatToIntBits(this.duration);
+        hash = 23 * hash + Objects.hashCode(this.startT);
+        hash = 23 * hash + Objects.hashCode(this.endT);
+        hash = 23 * hash + this.spaceforStudents;
+        hash = 23 * hash + Objects.hashCode(this.day);
+        hash = 23 * hash + Objects.hashCode(this.timeslots);
         return hash;
     }
 
@@ -139,16 +136,13 @@ public class Exam extends AbstractEntity {
         if (this.spaceforStudents != other.spaceforStudents) {
             return false;
         }
-        if (!Objects.equals(this.start, other.start)) {
+        if (!Objects.equals(this.startT, other.startT)) {
             return false;
         }
-        if (!Objects.equals(this.end, other.end)) {
+        if (!Objects.equals(this.endT, other.endT)) {
             return false;
         }
         if (!Objects.equals(this.day, other.day)) {
-            return false;
-        }
-        if (!Objects.equals(this.modules, other.modules)) {
             return false;
         }
         if (!Objects.equals(this.timeslots, other.timeslots)) {
@@ -159,6 +153,8 @@ public class Exam extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Exam{" + "duration=" + duration + ", start=" + start + ", end=" + end + ", spaceforStudents=" + spaceforStudents + ", day=" + day + ", modules=" + modules + ", timeslots=" + timeslots + '}';
+        return "Exam{" + "duration=" + duration + ", start=" + startT + ", end=" + endT + ", spaceforStudents=" + spaceforStudents + ", day=" + day + ", timeslots=" + timeslots + '}';
     }
+
+
 }
