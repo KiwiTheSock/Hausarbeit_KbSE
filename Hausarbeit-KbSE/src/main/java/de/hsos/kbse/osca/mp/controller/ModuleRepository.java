@@ -6,7 +6,7 @@
 package de.hsos.kbse.osca.mp.controller;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractRepository;
-import de.hsos.kbse.osca.mp.entity.Fach;
+import de.hsos.kbse.osca.mp.entity.Course;
 import javax.ejb.Stateless;
 
 /**
@@ -14,7 +14,7 @@ import javax.ejb.Stateless;
  * @author Philipp
  */
 @Stateless
-public class ModuleRepository extends AbstractRepository<Fach>{
+public class ModuleRepository extends AbstractRepository<Course>{
 
     public ModuleRepository() {
     }

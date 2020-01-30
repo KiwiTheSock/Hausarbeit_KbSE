@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Module")
-public class Fach extends AbstractEntity {
+public class Course extends AbstractEntity {
     
     //ID wird in AbstractEntity erstellt
     @NotNull(message = "Modulename can't be empty")
@@ -36,15 +36,15 @@ public class Fach extends AbstractEntity {
     @OneToMany
     private HashSet<Exam> exam;
     
-    public Fach() {
+    public Course() {
     }
 
-    public Fach(String moduleName, int semester) {
+    public Course(String moduleName, int semester) {
         this.moduleName = moduleName;
         this.semester = semester;
     }
 
-    public Fach(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
+    public Course(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
         this.moduleName = moduleName;
         this.semester = semester;
         this.users = users;
@@ -104,7 +104,7 @@ public class Fach extends AbstractEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fach other = (Fach) obj;
+        final Course other = (Course) obj;
         if (this.semester != other.semester) {
             return false;
         }

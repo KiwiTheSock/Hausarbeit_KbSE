@@ -55,7 +55,7 @@ public class Customer extends AbstractEntity{
     
     //Relation zu Modul (OOAD, Mathe 2,...)
     @ManyToMany
-    private HashSet<Fach> modules;
+    private HashSet<Course> modules;
 
     public Customer() {
     }

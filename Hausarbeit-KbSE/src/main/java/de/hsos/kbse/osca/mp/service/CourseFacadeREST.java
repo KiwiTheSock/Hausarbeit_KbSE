@@ -5,7 +5,7 @@
  */
 package de.hsos.kbse.osca.mp.service;
 
-import de.hsos.kbse.osca.mp.entity.Fach;
+import de.hsos.kbse.osca.mp.entity.Course;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author nordm
  */
 @Stateless
-@Path("de.hsos.kbse.osca.mp.entity.fach")
-public class FachFacadeREST extends AbstractFacade<Fach> {
+@Path("de.hsos.kbse.osca.mp.entity.course")
+public class CourseFacadeREST extends AbstractFacade<Course> {
 
     @PersistenceContext(unitName = "de.hsos.kbse.oscar.mp_Hausarbeit-KbSE_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public FachFacadeREST() {
-        super(Fach.class);
+    public CourseFacadeREST() {
+        super(Course.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Fach entity) {
+    public void create(Course entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Fach entity) {
+    public void edit(@PathParam("id") Long id, Course entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class FachFacadeREST extends AbstractFacade<Fach> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Fach find(@PathParam("id") Long id) {
+    public Course find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Fach> findAll() {
+    public List<Course> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Fach> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Course> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
