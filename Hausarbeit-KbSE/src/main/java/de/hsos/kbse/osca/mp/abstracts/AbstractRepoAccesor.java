@@ -6,7 +6,7 @@
 package de.hsos.kbse.osca.mp.abstracts;
 
 import de.hsos.kbse.osca.mp.controller.CustomerRepository;
-import de.hsos.kbse.osca.mp.controller.ModuleRepository;
+import de.hsos.kbse.osca.mp.controller.DepartmentRepository;
 import javax.inject.Inject;
 
 /**
@@ -18,5 +18,5 @@ public abstract class AbstractRepoAccesor {
     @Inject
     protected CustomerRepository Customers;
     @Inject
-    protected ModuleRepository Modules;
+    protected DepartmentRepository Modules;
 }

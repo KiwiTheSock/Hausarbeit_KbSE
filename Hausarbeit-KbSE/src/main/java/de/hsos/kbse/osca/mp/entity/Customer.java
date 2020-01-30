@@ -9,6 +9,7 @@ package de.hsos.kbse.osca.mp.entity;
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -32,9 +33,8 @@ public class Customer extends AbstractEntity{
     @NotNull(message = "Email may not be empty")
     private String email;
     
-    /*    @NotNull(message ="Matr. Nr. can't be empty!")
-    private String matnr;*/
     /**
+     * 
      * Wird eine PLZ, Straße und Stadt benötigt? 
      * 
      * @NotNull(message = "PLZ may not be empty)
@@ -55,7 +55,7 @@ public class Customer extends AbstractEntity{
     
     //Relation zu Modul (OOAD, Mathe 2,...)
     @ManyToMany
-    private HashSet<Module> modules;
+    private Set<Department> modules = new HashSet<>();
 
     public Customer() {
     }

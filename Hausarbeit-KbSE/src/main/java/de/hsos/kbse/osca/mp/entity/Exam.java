@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.enterprise.inject.Vetoed;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -44,10 +45,9 @@ public class Exam extends AbstractEntity {
 // wird die Hashset benötigt??
 //    @ManyToOne
 //    private HashSet<Module> modules;
-    
-    //Alternativ zum Set java.util.Collection, java.util.Set, java.util.List, or java.util.Map
+
     @OneToMany
-    private HashSet<TimeSlot> timeslots;
+    private Set<TimeSlot> timeslots = new HashSet<>();
     
     public Exam() {
     }
@@ -101,7 +101,7 @@ public class Exam extends AbstractEntity {
         this.day = day;
     }
 
-    public HashSet<TimeSlot> getTimeslots() {
+    public Set<TimeSlot> getTimeslots() {
         return timeslots;
     }
 

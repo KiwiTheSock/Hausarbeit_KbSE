@@ -7,7 +7,7 @@ package de.hsos.kbse.osca.mp.boundary;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractRepoAccesor;
 import de.hsos.kbse.osca.mp.entity.Customer;
-import de.hsos.kbse.osca.mp.entity.Module;
+import de.hsos.kbse.osca.mp.entity.Department;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -26,19 +26,23 @@ public class FillDatabase extends AbstractRepoAccesor {
         Locale.setDefault(Locale.GERMANY);
         System.out.println("Outside IF!\n");
 
-        if (!Customers.getAll().isEmpty()) {
+        if (Customers.getAll().isEmpty()) {
             
             System.out.println("Inside IF!\n");
             
             //String firstname, String lastname, String email, String studentLogin, String studentPassword, int accountType
-            /*Customers.add(new Customer("Administrator", "Administrator", "admin@hs-osnabrueck.de", "admin", "admin", 1));
-            Customers.add(new Customer("Philipp", "Markmann", "pmarkman@hs-osnabrueck.de", "pmarkman", "asdf", 2));*/
+            Customers.add(new Customer("Administrator", "Administrator", "admin@hs-osnabrueck.de", "admin", "admin", 1));
+            Customers.add(new Customer("Philipp", "Markmann", "pmarkman@hs-osnabrueck.de", "pmarkman", "asdf", 2));
             
-            Modules.add( new Module("KbSe", 5));
-            Modules.add( new Module("OOAD", 4));
+            Modules.add(new Department("KbSe", "5"));
+            Modules.add(new Department("OOAD", "4"));
             
             System.out.println("de.hsos.kbse.osca.mp.boundary.FillDatabase.init()");
+        }else {
+            
+            System.out.println("Userdaten vorhanden!");
         }
+        
     }
 
 }
