@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "Module")
-public class Module extends AbstractEntity {
+public class Fach extends AbstractEntity {
     
     //ID wird in AbstractEntity erstellt
     @NotNull(message = "Modulename can't be empty")
@@ -36,15 +36,15 @@ public class Module extends AbstractEntity {
     @OneToMany
     private HashSet<Exam> exam;
     
-    public Module() {
+    public Fach() {
     }
 
-    public Module(String moduleName, int semester) {
+    public Fach(String moduleName, int semester) {
         this.moduleName = moduleName;
         this.semester = semester;
     }
 
-    public Module(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
+    public Fach(String moduleName, int semester, HashSet<Customer> users, HashSet<Exam> exam) {
         this.moduleName = moduleName;
         this.semester = semester;
         this.users = users;
@@ -104,7 +104,7 @@ public class Module extends AbstractEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Module other = (Module) obj;
+        final Fach other = (Fach) obj;
         if (this.semester != other.semester) {
             return false;
         }
