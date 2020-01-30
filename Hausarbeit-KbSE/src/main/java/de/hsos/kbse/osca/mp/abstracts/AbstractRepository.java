@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
  * @param <T>
  */
 @Transactional
+//@ApplicationScoped
 public abstract class AbstractRepository<T extends AbstractEntity> implements Serializable {
 
     @PersistenceContext(unitName = "de.hsos.kbse.oscar.mp_Hausarbeit-KbSE_war_1.0-SNAPSHOTPU")

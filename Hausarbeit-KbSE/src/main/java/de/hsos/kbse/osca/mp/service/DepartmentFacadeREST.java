@@ -25,13 +25,13 @@ import javax.ws.rs.core.MediaType;
  * @author nordm
  */
 @Stateless
-@Path("de.hsos.kbse.osca.mp.entity.course")
-public class CourseFacadeREST extends AbstractFacade<Department> {
+@Path("de.hsos.kbse.osca.mp.entity.department")
+public class DepartmentFacadeREST extends AbstractFacade<Department> {
 
     @PersistenceContext(unitName = "de.hsos.kbse.oscar.mp_Hausarbeit-KbSE_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public CourseFacadeREST() {
+    public DepartmentFacadeREST() {
         super(Department.class);
     }
 

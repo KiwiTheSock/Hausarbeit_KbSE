@@ -8,6 +8,7 @@ package de.hsos.kbse.osca.mp.service;
 import de.hsos.kbse.osca.mp.entity.Exam;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -24,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author nordm
  */
-@Stateless
+@RequestScoped
 @Path("de.hsos.kbse.osca.mp.entity.exam")
 public class ExamFacadeREST extends AbstractFacade<Exam> {
 

@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author Philipp
  */
 @Entity
-@Dependent
+//@Dependent
 @Table(name = "Department")
 public class Department extends AbstractEntity {
     
