@@ -57,6 +57,7 @@ public class Customer extends AbstractEntity{
     @ManyToMany
     private Set<Department> modules = new HashSet<>();
 
+
     public Customer() {
     }
 

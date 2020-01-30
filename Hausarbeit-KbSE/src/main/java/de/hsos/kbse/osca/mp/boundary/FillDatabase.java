@@ -36,6 +36,7 @@ public class FillDatabase extends AbstractRepoAccesor {
             
             Modules.add(new Department("KbSe", "5"));
             Modules.add(new Department("OOAD", "4"));
+
             
             System.out.println("de.hsos.kbse.osca.mp.boundary.FillDatabase.init()");
         }else {

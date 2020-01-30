@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  *
@@ -26,9 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
-@Vetoed
 @Table(name = "Exam")
-@XmlRootElement
 public class Exam extends AbstractEntity {
     
     @NotNull(message = "duration can't be empty")
