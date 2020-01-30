@@ -5,7 +5,7 @@
  */
 package de.hsos.kbse.osca.mp.service;
 
-import de.hsos.kbse.osca.mp.entity.Course;
+import de.hsos.kbse.osca.mp.entity.Department;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,26 +26,26 @@ import javax.ws.rs.core.MediaType;
  */
 @Stateless
 @Path("de.hsos.kbse.osca.mp.entity.course")
-public class CourseFacadeREST extends AbstractFacade<Course> {
+public class CourseFacadeREST extends AbstractFacade<Department> {
 
     @PersistenceContext(unitName = "de.hsos.kbse.oscar.mp_Hausarbeit-KbSE_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
     public CourseFacadeREST() {
-        super(Course.class);
+        super(Department.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Course entity) {
+    public void create(Department entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Course entity) {
+    public void edit(@PathParam("id") Long id, Department entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class CourseFacadeREST extends AbstractFacade<Course> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Course find(@PathParam("id") Long id) {
+    public Department find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Course> findAll() {
+    public List<Department> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Course> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Department> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

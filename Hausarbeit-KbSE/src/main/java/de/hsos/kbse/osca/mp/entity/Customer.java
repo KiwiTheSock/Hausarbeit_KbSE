@@ -5,68 +5,102 @@
  */
 package de.hsos.kbse.osca.mp.entity;
 
-
 import de.hsos.kbse.osca.mp.abstracts.AbstractEntity;
-import java.util.HashSet;
-import java.util.Objects;
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author Philipp Markmann
+ * @author nordm
  */
-
 @Entity
-@Table(name = "Customer")
-public class Customer extends AbstractEntity{
+@Table(name = "CUSTOMER", catalog = "", schema = "X")
+@NamedQueries({
+    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
+    @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id"),
+    @NamedQuery(name = "Customer.findByAccounttype", query = "SELECT c FROM Customer c WHERE c.accounttype = :accounttype"),
+    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
+    @NamedQuery(name = "Customer.findByFirstname", query = "SELECT c FROM Customer c WHERE c.firstname = :firstname"),
+    @NamedQuery(name = "Customer.findByLastname", query = "SELECT c FROM Customer c WHERE c.lastname = :lastname"),
+    @NamedQuery(name = "Customer.findByStudentlogin", query = "SELECT c FROM Customer c WHERE c.studentlogin = :studentlogin"),
+    @NamedQuery(name = "Customer.findByStudentpassword", query = "SELECT c FROM Customer c WHERE c.studentpassword = :studentpassword")})
+public class Customer extends AbstractEntity {
 
-    
-    @NotNull(message = "Firstname may not be empty")
-    private String firstname;
-    @NotNull(message = "Lastname may not be empty")
-    private String lastname;
-    
-    @NotNull(message = "Email may not be empty")
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
+    @Column(name = "ACCOUNTTYPE")
+    private Integer accounttype;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 255)
+    @Column(name = "EMAIL", length = 255)
     private String email;
-    
-    /*    @NotNull(message ="Matr. Nr. can't be empty!")
-    private String matnr;*/
-    /**
-     * Wird eine PLZ, Straße und Stadt benötigt? 
-     * 
-     * @NotNull(message = "PLZ may not be empty)
-     * pirvate int plz;
-     * 
-     * @NotNull(message = "Street may not be empty)
-     * private String street;
-     * @NotNull(message = "City may not be empty)
-     * private String city
-     */
-    
-    @NotNull(message = "Username may not be empty")
-    private String studentLogin;
-    @NotNull(message = "Password may not be empty")
-    private String studentPassword;
-    
-    private int accountType; // Admin, Student, Dozent
-    
-    //Relation zu Modul (OOAD, Mathe 2,...)
-    @ManyToMany
-    private HashSet<Course> modules;
+    @Size(max = 255)
+    @Column(name = "FIRSTNAME", length = 255)
+    private String firstname;
+    @Size(max = 255)
+    @Column(name = "LASTNAME", length = 255)
+    private String lastname;
+    @Size(max = 255)
+    @Column(name = "STUDENTLOGIN", length = 255)
+    private String studentlogin;
+    @Size(max = 255)
+    @Column(name = "STUDENTPASSWORD", length = 255)
+    private String studentpassword;
 
     public Customer() {
     }
 
-    public Customer(String firstname, String lastname, String email, String studentLogin, String studentPassword, int accountType) {
+    public Customer( String email, String firstname, String lastname, String studentlogin, String studentpassword,Integer accounttype) {
+        this.accounttype = accounttype;
+        this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.studentlogin = studentlogin;
+        this.studentpassword = studentpassword;
+    }
+
+    public Customer(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getAccounttype() {
+        return accounttype;
+    }
+
+    public void setAccounttype(Integer accounttype) {
+        this.accounttype = accounttype;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
-        this.studentLogin = studentLogin;
-        this.studentPassword = studentPassword;
-        this.accountType = accountType;
     }
 
     public String getFirstname() {
@@ -85,88 +119,45 @@ public class Customer extends AbstractEntity{
         this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudentlogin() {
+        return studentlogin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setStudentlogin(String studentlogin) {
+        this.studentlogin = studentlogin;
     }
 
-    public String getStudentLogin() {
-        return studentLogin;
+    public String getStudentpassword() {
+        return studentpassword;
     }
 
-    public void setStudentLogin(String studentLogin) {
-        this.studentLogin = studentLogin;
-    }
-
-    public String getStudentPassword() {
-        return studentPassword;
-    }
-
-    public void setStudentPassword(String studentPassword) {
-        this.studentPassword = studentPassword;
-    }
-
-    public int getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(int accountType) {
-        this.accountType = accountType;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" + "firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", studentLogin=" + studentLogin + ", studentPassword=" + studentPassword + ", accountType=" + accountType + '}';
+    public void setStudentpassword(String studentpassword) {
+        this.studentpassword = studentpassword;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.firstname);
-        hash = 83 * hash + Objects.hashCode(this.lastname);
-        hash = 83 * hash + Objects.hashCode(this.email);
-        hash = 83 * hash + Objects.hashCode(this.studentLogin);
-        hash = 83 * hash + Objects.hashCode(this.studentPassword);
-        hash = 83 * hash + this.accountType;
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Customer)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Customer other = (Customer) obj;
-        if (this.accountType != other.accountType) {
-            return false;
-        }
-        if (!Objects.equals(this.firstname, other.firstname)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastname, other.lastname)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.studentLogin, other.studentLogin)) {
-            return false;
-        }
-        if (!Objects.equals(this.studentPassword, other.studentPassword)) {
+        Customer other = (Customer) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-  
-
+    @Override
+    public String toString() {
+        return "de.hsos.kbse.osca.mp.entity.Customer[ id=" + id + " ]";
+    }
+    
 }

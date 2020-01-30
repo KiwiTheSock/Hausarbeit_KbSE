@@ -7,7 +7,7 @@ package de.hsos.kbse.osca.mp.boundary;
 
 import de.hsos.kbse.osca.mp.abstracts.AbstractRepoAccesor;
 import de.hsos.kbse.osca.mp.entity.Customer;
-import de.hsos.kbse.osca.mp.entity.Course;
+import de.hsos.kbse.osca.mp.entity.Department;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -34,8 +34,8 @@ public class FillDatabase extends AbstractRepoAccesor {
             /*Customers.add(new Customer("Administrator", "Administrator", "admin@hs-osnabrueck.de", "admin", "admin", 1));
             Customers.add(new Customer("Philipp", "Markmann", "pmarkman@hs-osnabrueck.de", "pmarkman", "asdf", 2));*/
             
-            Modules.add(new Course("KbSe", 5));
-            Modules.add(new Course("OOAD", 4));
+            Modules.add(new Department("KbSe", 5));
+            Modules.add(new Department("OOAD", 4));
             
             System.out.println("de.hsos.kbse.osca.mp.boundary.FillDatabase.init()");
         }
